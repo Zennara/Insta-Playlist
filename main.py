@@ -1,6 +1,6 @@
 import os
 import time
-
+import json_handler as jh
 from dotenv import load_dotenv
 from instagrapi import Client
 import spotipy
@@ -46,12 +46,17 @@ def fetch_notes():
         if not is_tracked_user(note.user.username):
             continue
 
+        if jh.is_note_added(note.id):
+            continue
+
         if is_music_note(note):
             print(note)
             song_name, artist_name, other_text = extract_music_note_details(note)
             print(f"Song: {song_name}")
             print(f"Artist: {artist_name}")
             print(f"Other Text: {other_text}")
+
+            jh.add_note(note.id)
 
             # Add the song to the Spotify playlist
             add_song_to_spotify(song_name, artist_name)
