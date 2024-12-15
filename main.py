@@ -58,8 +58,12 @@ def fetch_notes():
 
             jh.add_note(note.id)
 
+            print("Added note to notes.json")
+
             # Add the song to the Spotify playlist
             add_song_to_spotify(song_name, artist_name)
+
+            print("Added song to Spotify playlist")
 
 
 def is_music_note(note):
@@ -91,6 +95,7 @@ def add_song_to_spotify(song_name, artist_name):
     results = sp.search(q=query, type="track", limit=1)
 
     if results["tracks"]["items"]:
+        print(f"Song '{song_name}' by '{artist_name}' found on Spotify.")
         track_id = results["tracks"]["items"][0]["id"]
         track_name = results["tracks"]["items"][0]["name"]
         print(f"Adding '{track_name}' to Spotify playlist.")
