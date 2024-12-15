@@ -37,7 +37,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 def event_loop():
     while True:
         fetch_notes()
-        time.sleep(3600) # Fetch notes every hour
+        time.sleep(3600)  # Fetch notes every hour
 
 
 def fetch_notes():
